@@ -5,6 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 export interface Transaction {
   id: string;
   date: string;
+  time: string;
   monthIndex: number;
   amount: number;
   description: string;
@@ -41,6 +42,10 @@ const toTransactionDate = (date: Date): string => {
   return dayjs(date).format('DD.MM.YYYY');
 };
 
+const toTransactionTime = (date: Date): string => {
+  return dayjs(date).format('hh:mm');
+};
+
 const toTransactionMonthIndex = (date: Date): number => {
   const monthIndex = date.getMonth();
   const leftPadIndex = 2;
@@ -67,6 +72,7 @@ const parseTransaction = (transaction: MonoTransaction): Transaction => {
     id: transaction.id,
     monthIndex: toTransactionMonthIndex(date),
     date: toTransactionDate(date),
+    time: toTransactionTime(date),
     amount: toPrice(transaction.amount),
     description: toDescription(transaction.description),
     counterName: transaction.counterName,
