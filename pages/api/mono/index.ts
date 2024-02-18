@@ -1,4 +1,5 @@
 import { dbClient } from '@/services/db';
+import { googleSheet } from '@/services/google-sheet';
 import dayjs from 'dayjs';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -93,10 +94,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const { id: transactionId, ...transactionBody } = parseTransaction(payload.data.statementItem);
 
-    console.log(transactionId, transactionBody);
-
     try {
       await dbClient.set(transactionId, JSON.stringify(transactionBody));
+
+      await googleSheet.load();
+      await googleSheet.sheet.addRow(transactionBody);
+
+      // Delete transaction from DB after it was successfully added to Google Sheet
+      await dbClient.del(transactionId);
     } catch (error) {
       return res.status(500).send(`Internal Server Error: ${error}`);
     }
