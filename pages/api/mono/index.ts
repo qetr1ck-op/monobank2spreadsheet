@@ -89,52 +89,57 @@ const categories = [
 
 // TODO: load as external dependency (from gist, etc.)
 const toCategory = (description: string): (typeof categories)[number] => {
+  const lowerCaseDescription = description.toLowerCase();
+
   switch (true) {
-    case description.includes('Епіцентр'):
-    case description.includes('MEGOGO'):
-    case description.includes('Нова пошта'):
-    case description.includes('Netflix'):
-    case description.includes('Охорона'):
-    case description.includes('Холодна вода'):
-    case description.includes('Електроенергія'):
-    case description.includes('Опалення'):
-    case description.includes('Гаряча вода'):
-    case description.includes('JYSK'):
-    case description.includes('Fotokhata'):
+    case lowerCaseDescription.includes('Епіцентр'.toLowerCase()):
+    case lowerCaseDescription.includes('MEGOGO'.toLowerCase()):
+    case lowerCaseDescription.includes('Нова пошта'.toLowerCase()):
+    case lowerCaseDescription.includes('Netflix'.toLowerCase()):
+    case lowerCaseDescription.includes('Охорона'.toLowerCase()):
+    case lowerCaseDescription.includes('Холодна вода'.toLowerCase()):
+    case lowerCaseDescription.includes('Електроенергія'.toLowerCase()):
+    case lowerCaseDescription.includes('Опалення'.toLowerCase()):
+    case lowerCaseDescription.includes('Гаряча вода'.toLowerCase()):
+    case lowerCaseDescription.includes('JYSK'.toLowerCase()):
+    case lowerCaseDescription.includes('Fotokhata'.toLowerCase()):
+    case lowerCaseDescription.includes('Novapay'.toLowerCase()):
+    case lowerCaseDescription.includes('AliExpress'.toLowerCase()):
       return '🏠 house';
-    case description.includes('Сину на машину'):
-    case description.includes('Solidol Barbershop'):
-    case description.includes('IQOS'):
-    case description.includes('CHATGPT'):
-    case description.includes('vapes'):
+    case lowerCaseDescription.includes('Сину на машину'.toLowerCase()):
+    case lowerCaseDescription.includes('Solidol Barbershop'.toLowerCase()):
+    case lowerCaseDescription.includes('IQOS'.toLowerCase()):
+    case lowerCaseDescription.includes('CHATGPT'.toLowerCase()):
+    case lowerCaseDescription.includes('vapes'.toLowerCase()):
       return '🤹‍♂️ personal orest';
-    case description.includes('AUTOPARTNER'):
-    case description.includes('Yaremko'):
+    case lowerCaseDescription.includes('AUTOPARTNER'.toLowerCase()):
+    case lowerCaseDescription.includes('Yaremko'.toLowerCase()):
       return '🚘 car';
-    case description.includes('Amic'):
-    case description.includes('OKKO'):
+    case lowerCaseDescription.includes('Amic'.toLowerCase()):
+    case lowerCaseDescription.includes('OKKO'.toLowerCase()):
       return '⛽ petrol';
-    case description.includes('Znakhar'):
-    case description.includes('Аптека'):
-    case description.includes('Будемо Здорові Разом'):
-    case description.includes('Apteka 3I'):
+    case lowerCaseDescription.includes('Znakhar'.toLowerCase()):
+    case lowerCaseDescription.includes('Аптека'.toLowerCase()):
+    case lowerCaseDescription.includes('Будемо Здорові Разом'.toLowerCase()):
+    case lowerCaseDescription.includes('Apteka 3I'.toLowerCase()):
       return '🏥 medical';
     //Zadzerkalja
-    case description.includes('Софія С.'):
+    case lowerCaseDescription.includes('Софія С.'.toLowerCase()):
       return '🐣 baby kindergarden';
-    case description.includes('Будинок Іграшок'):
-    case description.includes('PAPASHON'):
-    case description.includes('MALIaTKO'):
-    case description.includes('Чудо Острів'):
+    case lowerCaseDescription.includes('Будинок Іграшок'.toLowerCase()):
+    case lowerCaseDescription.includes('PAPASHON'.toLowerCase()):
+    case lowerCaseDescription.includes('MALIaTKO'.toLowerCase()):
+    case lowerCaseDescription.includes('Чудо Острів'.toLowerCase()):
       return '🐥 baby';
-    case description.includes('OSONNYA'):
+    case lowerCaseDescription.includes('OSONNYA'.toLowerCase()):
       return '🏝️ travel';
-    case description.includes('PAPASHON'):
-    case description.includes('Остерія'):
-    case description.includes('Multiplex'):
-    case description.includes('IloveKebab'):
+    case lowerCaseDescription.includes('PAPASHON'.toLowerCase()):
+    case lowerCaseDescription.includes('Остерія'.toLowerCase()):
+    case lowerCaseDescription.includes('Multiplex'.toLowerCase()):
+    case lowerCaseDescription.includes('IloveKebab'.toLowerCase()):
       return '🍴 restoran';
-    case description.includes('Village Market'):
+    case lowerCaseDescription.includes('Village Market'.toLowerCase()):
+    case lowerCaseDescription.includes('Близенько'.toLowerCase()):
       return '🍔 food';
     default:
       return '🪄 other';
