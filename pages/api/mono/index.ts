@@ -182,7 +182,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       await googleSheet.sheet.addRow(transactionBody);
 
       // Delete transaction from DB after it was successfully added to Google Sheet
-      await dbClient.del(transactionId);
+      // await dbClient.del(transactionId);
     } catch (error) {
       return res.status(500).send(`Internal Server Error: ${error}`);
     }
