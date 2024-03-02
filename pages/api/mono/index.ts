@@ -162,8 +162,6 @@ const parseTransaction = (transaction: MonoTransaction): Transaction => {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<string>) {
-  // res.status(200).send('OK');
-
   if (req.method === 'POST') {
     const payload: MonoTransactionRequest = req.body;
 
@@ -176,7 +174,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const { id: transactionId, ...transactionBody } = parseTransaction(payload.data.statementItem);
 
     try {
-      await dbClient.set(transactionId, JSON.stringify(transactionBody));
+      // set expiration time for 1 month
+      await dbClient.set(transactionId, JSON.stringify(transactionBody), { EX: 60 * 60 * 24 * 30 });
 
       await googleSheet.load();
       await googleSheet.sheet.addRow(transactionBody);
